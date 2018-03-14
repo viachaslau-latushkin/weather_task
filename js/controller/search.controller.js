@@ -1,13 +1,12 @@
 angular.module('weatherApp').
   controller('searchController', ['$scope', 'searchService', 'dataStorage', function($scope, searchService, dataStorage){
-    $scope.search = function(){
-      if($scope.keywords.length >= 3){
-        searchService.search($scope.keywords).then(function(response){
-          if(response.data.list.length > 0){
-              $scope.searchResultArray = response.data.list;
-          }
-        });
-      }
+
+    $scope.search = function(keywords){
+      searchService.search(keywords).then(function(response){
+        if(response.data.list.length > 0){
+          $scope.searchResultArray = response.data.list;
+        }
+      });
     };
 
     $scope.addToAvailableCity = function(cityId,cityName){

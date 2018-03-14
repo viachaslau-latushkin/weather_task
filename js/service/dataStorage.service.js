@@ -1,6 +1,6 @@
 angular.module('weatherApp').
   factory('dataStorage', function() {
-    var requestService = {
+    var that = {
       availableCity : {
         625144 : {id: 625144, name: 'Minsk'},
         2267057 : {id: 2267057, name: 'Lisbon'},
@@ -8,22 +8,22 @@ angular.module('weatherApp').
         6539761 : {id: 6539761, name: 'Rome'},
       },
       saveData: function () {
-        sessionStorage.cityData = angular.toJson(requestService.availableCity);
+        sessionStorage.cityData = angular.toJson(that.availableCity);
       },
       restoreData: function () {
         if(sessionStorage.cityData){
           var cityFromStorage = angular.fromJson(sessionStorage.cityData);
-          if(Object.keys(cityFromStorage).length > Object.keys(requestService.availableCity).length) {
-            requestService.availableCity = cityFromStorage;
+          if(Object.keys(cityFromStorage).length > Object.keys(that.availableCity).length) {
+              that.availableCity = cityFromStorage;
           }
-          angular.forEach(requestService.availableCity, function(data) {
+          angular.forEach(that.availableCity, function(data) {
             if(data.hasOwnProperty('enable')) {
               delete data['enable'];
             }
           });
         }
-        return requestService.availableCity;
+        return that.availableCity;
       }
     };
-    return requestService;
+    return that;
   });

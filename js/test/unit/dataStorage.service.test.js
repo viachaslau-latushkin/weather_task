@@ -7,7 +7,6 @@ describe('Testing dataStorage service', function () {
         $window = _$window_;
     }));
 
-    // Factory of interest is called MyFactory
     describe('tests for dataStorage factory', function() {
         var factory = null;
         beforeEach(inject(function(dataStorage) {

@@ -33,12 +33,6 @@ describe('Testing request service', function () {
         it('request function get response', function () {
 
             //cityId from dataStorage service
-            // availableCity : {
-            //     625144 : {id: 625144, name: 'Minsk'},
-            //     2267057 : {id: 2267057, name: 'Lisbon'},
-            //     611717 : {id: 611717, name: 'Tbilisi'},
-            //     6539761 : {id: 6539761, name: 'Rome'},
-            // },
             factory.request(625144).then(function(response) {
                 expect(response).toEqual(jasmine.any(Object));
                 expect(response.main).toBeDefined();

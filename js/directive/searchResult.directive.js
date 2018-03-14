@@ -1,7 +1,7 @@
 angular.module('weatherApp').
-    directive('serachResult',function(){
+    directive('searchResult',function(){
         return {
             restrict:"A",
-            templateUrl: "../../html/serachResult.html"
+            templateUrl: "html/searchResult.html"
         };
     });
