@@ -2,7 +2,7 @@ angular.module('weatherApp').
   directive('mainPanel',['requestService',function(requestService){
     return {
       restrict:"A",
-      templateUrl: "../html/selectCity.html",
+      templateUrl: "/html/selectCity.html",
       link: function(scope,element,attr){
         scope.add = function(selectedCityId){
           if(!selectedCityId){
