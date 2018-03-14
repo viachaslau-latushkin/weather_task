@@ -1,5 +1,5 @@
 angular.module('weatherApp').
-  directive('mainPanel',['requestService',function(requestService){
+  directive('mainPanel',['requestService','dataStorage',function(requestService,dataStorage){
     return {
       restrict:"A",
       templateUrl: "../html/selectCity.html",
@@ -33,7 +33,7 @@ angular.module('weatherApp').
         scope.makeRequest = function(selectedCityId) {
           return requestService.request(selectedCityId).then(function(data){
             scope.availableCity[selectedCityId].data = data;
-              dataStorage.saveData();
+            dataStorage.saveData();
             scope.selectedArray[selectedCityId] = scope.availableCity[selectedCityId];
             scope.availableCity[selectedCityId].enable = false;
           });
