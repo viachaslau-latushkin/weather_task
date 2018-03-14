@@ -1,0 +1,32 @@
+<table ng-if="showHide(selectedArray)" class="weatherTable">
+    <thead>
+        <th></th>
+        <th>City</th>
+        <th>Country</th>
+        <th>MIN Temp.</th>
+        <th>Temp.</th>
+        <th>MAX Temp.</th>
+        <th>Humidity</th>
+        <th>Pressure</th>
+        <th>Sunrise</th>
+        <th>Sunset</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="(id,city) in selectedArray">
+            <td><img src="https://openweathermap.org/img/w/{{city.data.weather[0].icon}}.png" alt="{{city.data.weather[0].description}}" title="{{city.data.weather[0].description}}"/></td>
+            <td><a href='http://openweathermap.org/weathermap?zoom=12&lat={{city.data.coord.lat}}&lon={{city.data.coord.lon}}' target="_blank" rel="nofollow">{{city.name}}</a></td>
+            <td>{{city.data.sys.country}}</td>
+            <td>{{city.data.main.temp_min}} &deg;C</td>
+            <td>{{city.data.main.temp}} &deg;C</td>
+            <td>{{city.data.main.temp_max}} &deg;C</td>
+            <td>{{city.data.main.humidity}} %</td>
+            <td>{{city.data.main.pressure}} hpa</td>
+            <td>{{city.data.sys.sunrise}}</td>
+            <td>{{city.data.sys.sunset}}</td>
+            <td>
+                <span class="size" ng-click="delete(id)"><i class="fas fa-minus-circle"></i></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

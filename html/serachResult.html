@@ -1,0 +1,18 @@
+<table ng-if="searchResultArray.length" class="weatherTable">
+    <thead>
+        <th>City</th>
+        <th>Country</th>
+        <th>Coords</th>
+        <th></th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="city in searchResultArray">
+        <td>{{city.name}}</td>
+        <td>{{city.sys.country}}</td>
+        <td><a href='http://openweathermap.org/weathermap?zoom=12&lat={{city.coord.lat}}&lon={{city.coord.lon}}' target="_blank" rel="nofollow">[{{city.coord.lat}} , {{city.coord.lon}}]</a></td>
+        <td>
+            <span class="size" ng-click="addToAvailableCity(city.id,city.name)"><i class="fas fa-plus-circle"></i></span>
+        </td>
+    </tr>
+    </tbody>
+</table>

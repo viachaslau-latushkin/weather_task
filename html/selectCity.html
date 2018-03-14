@@ -1,0 +1,7 @@
+<select ng-model="selectedCityId">
+    <option disabled selected value ng-show="selectedCityId === ''"> -- Choose a city -- </option>
+    <option ng-repeat="(cityId,objectCity) in filterCityEnable()"
+            ng-selected="selectedCityId == cityId"
+            ng-value="cityId">{{objectCity.name}}</option>
+</select>
+<span ng-click="add(selectedCityId)" class="size"><i class="fas fa-plus-circle"></i></span>

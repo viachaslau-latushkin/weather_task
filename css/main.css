@@ -1,0 +1,98 @@
+.flexContainer {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.flexContainer header, .flexContainer footer {
+    background-color: #cccccc;
+    width: 100%;
+    text-align: center;
+}
+
+.flexContainer div, .flexContainer nav  {
+    margin: 20px 0;
+}
+
+.flexContainer main {
+    flex: 1;
+    text-align: center;
+}
+
+.weatherTable td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.weatherTable th:not(:first-child):not(:last-child) {
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+}
+
+.weatherTable td:not(:first-child):not(:last-child) {
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+}
+
+.weatherTable tr:last-child {
+    border-bottom: 1px solid #cccccc;
+}
+
+.weatherTable {
+    border-collapse: collapse;
+}
+
+.size {
+    font-size: 20px;
+    color: #cccccc;
+    cursor: pointer;
+}
+
+.size:hover, .size:active {
+    color: #000000;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    height: 20px;
+}
+
+.flex > * {
+    margin: 0 5px;
+}
+
+.nav {
+    white-space: nowrap;
+    list-style: none;
+    padding: 0;
+}
+
+.nav li {
+    display: inline;
+    margin: 0 5px 0 0;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #cccccc;
+    border-radius: 50px;
+}
+
+.nav li:hover {
+    color: #cccccc;
+    background-color: #000000;
+}
+
+.nav .active {
+    border: 1px solid black;
+}
