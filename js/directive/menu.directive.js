@@ -30,6 +30,7 @@ angular.module('weatherApp').
         scope.showHide = function(obj) {
           return (Object.keys(obj).length === 0 && obj.constructor === Object) ? false : true;
         };
+        
         scope.makeRequest = function(selectedCityId) {
           return requestService.request(selectedCityId).then(function(data){
             scope.availableCity[selectedCityId].data = data;
