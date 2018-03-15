@@ -1,49 +1,61 @@
 describe('Testing dataStorage service', function () {
     beforeEach(module('weatherApp'));
 
-    var $controller;
-    beforeEach(inject(function(_$controller_, _$window_) {
-        $controller = _$controller_;
-        $window = _$window_;
-    }));
-
     describe('tests for dataStorage factory', function() {
-        var factory = null;
-        beforeEach(inject(function(dataStorage) {
-            factory = dataStorage;
+
+        var suite = null;
+        beforeEach(inject(function ($injector) {
+            suite = {};
+            suite.factory = $injector.get('dataStorage');
+            suite.$window = $injector.get('$window');
         }));
 
+        afterEach(function () {
+            suite = null;
+        });
+
         it('Should define methods', function() {
-            expect(factory.availableCity).toBeDefined();
+            expect(suite.factory.availableCity).toBeDefined();
 
-            expect(factory.saveData).toBeDefined();
-            expect(factory.restoreData).toBeDefined();
+            expect(suite.factory.saveData).toBeDefined();
+            expect(suite.factory.restoreData).toBeDefined();
 
-            expect(factory.saveData).toEqual(jasmine.any(Function));
-            expect(factory.restoreData).toEqual(jasmine.any(Function));
+            expect(suite.factory.saveData).toEqual(jasmine.any(Function));
+            expect(suite.factory.restoreData).toEqual(jasmine.any(Function));
+        });
+
+        it('Should save data in the sessionStorage', function() {
+
+            suite.factory.availableCity[123] = {id: 123, name: 'privetCity'};
+            suite.factory.saveData();
+            expect(suite.$window.sessionStorage.cityData).toBeDefined();
+            expect(suite.$window.sessionStorage.cityData[123]).toBeDefined();
+            expect(suite.factory.availableCity[123].id).toBe(123);
+            expect(suite.factory.availableCity[123].name).toBe('privetCity');
+
         });
 
         it('Should save and restore data correctly', function() {
 
-            expect(factory.restoreData()).toEqual(factory.availableCity);
-            factory.availableCity[123] = {id: 123, name: 'privetCity'};
-            factory.saveData();
-            factory.restoreData();
-            expect(factory.availableCity[123]).toBeDefined();
-            expect(factory.availableCity[123].id).toBe(123);
-            expect(factory.availableCity[123].name).toBe('privetCity');
+            expect(suite.factory.restoreData()).toEqual(suite.factory.availableCity);
+            suite.factory.availableCity[123] = {id: 123, name: 'privetCity'};
+            suite.factory.saveData();
+            suite.factory.restoreData();
+            expect(suite.factory.availableCity[123]).toBeDefined();
+            expect(suite.factory.availableCity[123].id).toBe(123);
+            expect(suite.factory.availableCity[123].name).toBe('privetCity');
 
         });
 
         it('Should delete enable property after restoreData', function() {
 
-            factory.availableCity[123] = {id: 123, name: 'privetCity', enable: true};
-            factory.saveData();
-            factory.restoreData();
-            expect(factory.availableCity[123]).toBeDefined();
-            expect(factory.availableCity[123].id).toBe(123);
-            expect(factory.availableCity[123].name).toBe('privetCity');
-            expect(factory.availableCity[123].enable).not.toBeDefined();
+            suite.factory.availableCity[123] = {id: 123, name: 'privetCity', enable: true};
+            suite.factory.saveData();
+            suite.factory.restoreData();
+            expect(suite.factory.availableCity[123]).toBeDefined();
+            expect(suite.factory.availableCity[123].id).toBe(123);
+            expect(suite.factory.availableCity[123].name).toBe('privetCity');
+            expect(suite.factory.availableCity[123].enable).not.toBeDefined();
 
         });
     });

@@ -2,16 +2,22 @@ describe('Testing mainController', function () {
 
     beforeEach(module('weatherApp'));
 
-    var $controller;
-
-    beforeEach(inject(function(_$controller_){
-        $controller = _$controller_;
-    }));
-
     describe('All key variable initialized', function () {
+
+        var suite = null;
+        beforeEach(inject(function ($injector) {
+            suite = {};
+            suite.$controller = $injector.get('$controller');
+        }));
+
+        afterEach(function () {
+            suite = null;
+        });
+
         it('selectedArray,availableCity should be init, selectedCity should be equal empty string ("")', function () {
+
             var $scope = {};
-            var controller = $controller('mainController', { $scope: $scope });
+            suite.$controller('mainController', { $scope: $scope });
 
             expect($scope.selectedArray).toBeDefined();
             expect($scope.availableCity).toBeDefined();
@@ -20,8 +26,9 @@ describe('Testing mainController', function () {
         });
 
         it('availableCity have id and name', function () {
+
             var $scope = {};
-            var controller = $controller('mainController', { $scope: $scope });
+            suite.$controller('mainController', { $scope: $scope });
 
             for (var key in $scope.availableCity) {
                 expect($scope.availableCity[key].id).toBeDefined();
@@ -32,8 +39,9 @@ describe('Testing mainController', function () {
         });
 
         it('custom filter return correct array', function () {
+
             var $scope = {};
-            var controller = $controller('mainController', { $scope: $scope });
+            suite.$controller('mainController', { $scope: $scope });
 
             var ret = $scope.filterCityEnable();
             expect(Object.keys(ret).length).toBe(Object.keys($scope.availableCity).length);
