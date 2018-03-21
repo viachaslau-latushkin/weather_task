@@ -2,7 +2,7 @@ angular.module('weatherApp').
   directive('mainPanel',['requestService','dataStorage',function(requestService,dataStorage){
     return {
       restrict:"A",
-      templateUrl: "html/selectCity.html",
+      templateUrl: "../../html/selectCity.html",
       link: function(scope,element,attr){
         scope.add = function(selectedCityId){
           if(!selectedCityId){
@@ -34,9 +34,9 @@ angular.module('weatherApp').
         scope.makeRequest = function(selectedCityId) {
           return requestService.request(selectedCityId).then(function(data){
             scope.availableCity[selectedCityId].data = data;
-            dataStorage.saveData();
             scope.selectedArray[selectedCityId] = scope.availableCity[selectedCityId];
             scope.availableCity[selectedCityId].enable = false;
+            dataStorage.saveData();
           });
         }
       }

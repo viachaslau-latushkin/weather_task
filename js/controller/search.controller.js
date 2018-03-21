@@ -10,10 +10,10 @@ angular.module('weatherApp').
         }
         _timeout = $timeout(function(){
             searchService.search(keywords).then(function(response){
-                if(response.data.list.length > 0){
-                    $scope.searchResultArray = response.data.list;
-                }
-            });
+                $scope.searchResultArray = response;
+            }).catch(function(err){
+                console.log(err);
+            })
             _timeout = null;
         },800);
     };

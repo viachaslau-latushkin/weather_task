@@ -1,5 +1,5 @@
 angular.module('weatherApp').
-  factory('dataStorage', function() {
+  service('dataStorage', function() {
     var that = {
       availableCity : {
         625144 : {id: 625144, name: 'Minsk'},

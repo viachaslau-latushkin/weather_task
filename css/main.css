@@ -20,7 +20,7 @@
     text-align: center;
 }
 
-.flexContainer div, .flexContainer nav  {
+.flexContainer div, .flexContainer nav, .weatherTable {
     margin: 20px 0;
 }
 
