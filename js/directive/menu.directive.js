@@ -2,14 +2,14 @@ angular.module('weatherApp').
   directive('mainPanel',['requestService','dataStorage',function(requestService,dataStorage){
     return {
       restrict:"A",
-      templateUrl: "../../html/selectCity.html",
+      templateUrl: "html/selectCity.html",
       link: function(scope,element,attr){
         scope.add = function(selectedCityId){
           if(!selectedCityId){
             alert("Choose a city!");
             return;
           }
-          if(scope.availableCity[selectedCityId].hasOwnProperty('id')) {
+          if(scope.availableCity[selectedCityId] && scope.availableCity[selectedCityId].hasOwnProperty('id')) {
             if(scope.selectedArray.length === 0 || !scope.selectedArray[selectedCityId]) {
               var data = scope.availableCity[selectedCityId].hasOwnProperty('data');
               if(!data || (data && (Math.floor(Date.now() / 1000) - scope.availableCity[selectedCityId].data.coord.dt > 3600))) {
@@ -23,7 +23,7 @@ angular.module('weatherApp').
             scope.selectedCityId = '';
           }
           else {
-            console.log("error : selectedCity does't have id");
+            console.log("error : selectedCity does't have id or element with key does't defined");
           }
         };
 

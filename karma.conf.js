@@ -5,23 +5,23 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    //basePath: 'js/test),
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
-
     // list of files / patterns to load in the browser
     files: [
-		'../../lib/angular169.js',
-		'../../node_modules/angular-mocks/angular-mocks.js',
-		'../app.js',
-        '../controller/*.js',
-        '../directive/*.js',
-        '../service/*.js',
-		'unit/*.js'
+		'lib/angular169.js',
+		'node_modules/angular-mocks/angular-mocks.js',
+		'js/app.js',
+        'js/controller/*.js',
+        'js/directive/*.js',
+        'js/service/*.js',
+        'html/*.html',
+		'js/test/unit/*.js'
     ],
 
 
@@ -29,11 +29,17 @@ module.exports = function(config) {
     exclude: [
     ],
 
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        "html/*.html": ["ng-html2js"]
     },
+
+    ngHtml2JsPreprocessor: {
+        moduleName: "templates"
+    },
+
+
 
 
     // test results reporter to use
@@ -61,7 +67,15 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    //browsers: ['PhantomJS'],
+      browsers: ['Chrome', 'Chrome_without_security'],
+
+      customLaunchers: {
+          Chrome_without_security: {
+              base: 'Chrome',
+              flags: ['--disable-web-security']
+          }
+      },
 
 
     // Continuous Integration mode
